@@ -1,7 +1,7 @@
 __now on development__
 
 # PNG.ts
-PNG decoder written in TypeScript
+JavaScript PNG decoder written in TypeScript
 
 * fork from [arian/pngjs](https://github.com/arian/pngjs)
 
@@ -42,4 +42,7 @@ npm run build
 
 
 ## related works
-*
+* https://github.com/yahoo/pngjs-image
+* https://github.com/uupaa/PNG.js
+* https://github.com/zdobersek/png.js
+* https://github.com/devongovett/png.js

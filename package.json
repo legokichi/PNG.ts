@@ -1,7 +1,7 @@
 {
   "name": "PNG.ts",
   "version": "0.0.0",
-  "description": "PNG decoder written in TypeScript",
+  "description": "JavaScript PNG decoder written in TypeScript",
   "license": "MIT",
   "url": "https://github.com/legokichi/PNG.ts",
   "keywords": [
