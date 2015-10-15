@@ -1,0 +1,50 @@
+{
+  "name": "PNG.ts",
+  "version": "0.0.0",
+  "description": "PNG decoder written in TypeScript",
+  "license": "MIT",
+  "url": "https://github.com/legokichi/PNG.ts",
+  "keywords": [
+    "png"
+  ],
+  "scripts": {
+    "init": "npm run update; npm run build",
+    "update": "npm update; bower update; dtsm update --save",
+    "clean": "rm -f es6/* lib/* dist/* ",
+    "start": "http-server -p 8000 &",
+    "stop": "killall -- node */http-server -p 8000",
+    "watch": "coffee -c -w -b -o lib src",
+    "build": "npm run clean; npm run build-ts; npm run build-babel; npm run build-browserify",
+    "build-ts": "tsc --target es6 --noEmitOnError --noImplicitAny --rootDir src --outdir es6 --declaration src/*.ts",
+    "build-babel": "babel es6 --extensions .js --modules common --out-dir lib",
+    "build-browserify": "browserify lib/Shell.js --outfile dist/Shell.js --standalone ikagaka",
+    "build-test": "rm -f test/*.js; npm run build-test-ts; npm run build-test-espower",
+    "build-test-ts": "tsc --target test --module commonjs --noEmitOnError --noImplicitAny --rootDir test --outdir test --declaration src/*.ts",
+    "build-test-espower": "for i in `find test -name test*.js`; do node node_modules/espower-cli/bin/cmd.js $i > $i.js; done"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/legokichi/PNG.ts.git"
+  },
+  "dependencies": {
+  },
+  "devDependencies": {
+    "coffee-script": "^1.10.0",
+    "gulp": "^3.9.0",
+    "gulp-babel": "^5.2.1",
+    "gulp-espower": "^1.0.1",
+    "gulp-rename": "^1.2.2",
+    "gulp-replace": "^0.5.4",
+    "gulp-tslint": "^3.3.0",
+    "gulp-typescript": "^2.9.2",
+    "typescript": "^1.6.2"
+    "espower-cli": ""
+  },
+  "bugs": {
+    "url": "https://github.com/legokichi/PNG.ts/issues"
+  },
+  "main": "./lib/PNG.js",
+  "author": "legokichi",
+  "contributors": [
+  ]
+}
