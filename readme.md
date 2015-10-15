@@ -1,13 +1,19 @@
+__now on development__
+
 # PNG.ts
 PNG decoder written in TypeScript
 
 * fork from [arian/pngjs](https://github.com/arian/pngjs)
 
 ## Dependence
-* [jszip]() or [pako]() or [zlib.js]() some zlib compatible library.
+* [jszip](https://github.com/Stuk/jszip), [pako](https://github.com/nodeca/pako), [zlib.js](https://github.com/imaya/zlib.js/) or some zlib compatible library.
 
 ## Usage
-### Browser
+### typescript
+```typescript
+```
+
+### browser
 ```html
 ```
 ### webworker
@@ -20,7 +26,7 @@ PNG decoder written in TypeScript
 
 ## Development
 ```sh
-npm install -g bower dtsm glup typescript babel browserify
+npm install -g bower dtsm http-server
 npm run init
 npm run build
 ```
@@ -33,3 +39,7 @@ npm run build
 
 ## TODO
 * interlace png decoder
+
+
+## related works
+*
