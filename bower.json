@@ -8,7 +8,7 @@
   },
   "devDependencies": {
   },
-  "main": "./Shell.js",
+  "main": "./dist/PNG.js",
   "ignore": [
     "**/.*",
     "bower_components",

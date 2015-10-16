@@ -10,13 +10,10 @@
   "scripts": {
     "init": "npm run update; npm run build",
     "update": "npm update; bower update; dtsm update --save",
-    "clean": "rm -f lib/* dist/* ",
-    "start": "http-server -p 8000 &",
+    "clean": "rm -f lib/* dist/* test/*.js",
+    "start": "http-server -p 8000 & watchify lib/index.js --standalone PNG -o dist/PNG.js -v & gulp watch;",
     "stop": "killall -- node */http-server -p 8000",
-    "watch": "gulp build:watch",
-    "build": "npm run clean; npm run build-ts",
-    "build-ts": "gulp build:ts",
-    "build-browserify": "browserify lib/PNG.js --outfile dist/PNG.js --standalone PNG"
+    "build": "npm run clean; gulp build; browserify lib/index.js --outfile dist/PNG.js --standalone PNG"
   },
   "repository": {
     "type": "git",
@@ -25,21 +22,19 @@
   "dependencies": {
   },
   "devDependencies": {
-    "browserify": "^11.2.0",
+    "watchify": "^3.4.0",
     "coffee-script": "^1.10.0",
     "gulp": "^3.9.0",
     "gulp-babel": "^5.2.1",
     "gulp-espower": "^1.0.1",
     "gulp-rename": "^1.2.2",
-    "gulp-replace": "^0.5.4",
-    "gulp-tslint": "^3.3.0",
     "gulp-typescript": "^2.9.2",
     "typescript": "^1.6.2"
   },
   "bugs": {
     "url": "https://github.com/legokichi/PNG.ts/issues"
   },
-  "main": "./lib/PNG.js",
+  "main": "./lib/index.js",
   "author": "legokichi",
   "contributors": []
 }

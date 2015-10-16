@@ -1,16 +1,32 @@
-
-<script src="../bower_components/encoding-japanese/encoding.min.js"></script>
 <script src="../bower_components/jszip/dist/jszip.min.js"></script>
-<script src="../bower_components/narloader/NarLoader.js"></script>
-<script src="../bower_components/surfaces_txt2yaml/lib/surfaces_txt2yaml.js"></script>
-<script src="../dist/Shell.js"></script>
-<script>window.Shell = ikagaka.Shell</script>
-<script src="../lib/ShellLoader.js"></script>
+<script src="../dist/PNG.js"></script>
 <script>
-NarLoader
-.loadFromURL("../nar/mobilemaster.nar")
-.then(function(dir){ return ShellLoader.loadFromPath(dir, "shell/master"); })
-.then(function(shell){
-  console.log(shell);
-}).catch(function(err){console.error(err, err.message)});
+getBuffer("./Lenna.png").then(function(buffer){
+  var reader = new PNG.PNGReader(buffer);
+  var png = reader.parse();
+  var decoded = png.getUint8ClampedArray();
+
+  var cnv = document.createElement('canvas');
+  var ctx = cnv.getContext('2d');
+  var width = cnv.width = png.width;
+  var height = cnv.height = png.height;
+  var imageData = ctx.getImageData(0, 0, width, height);
+  
+  imageData.data.set(decoded);
+  ctx.putImageData(imageData, 0, 0);
+  document.body.appendChild(cnv);
+});
+
+function getBuffer(url){
+  return new Promise(function(resolve, reject){
+    var xhr = new XMLHttpRequest();
+    xhr.open("GET", url, true);
+    xhr.responseType = "arraybuffer";
+    xhr.onload = function (ev) {
+      var arrayBuffer = xhr.response;
+      resolve(arrayBuffer);
+    };
+    xhr.send(null);
+  });
+}
 </script>

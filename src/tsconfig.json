@@ -33,6 +33,7 @@
     ],
     "files": [
         "BlobWorker.ts",
+        "index.ts",
         "PNG.ts",
         "PNGReader.ts"
     ],

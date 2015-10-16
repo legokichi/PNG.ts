@@ -40,13 +40,14 @@ function bufferToString(buffer: Uint8Array): string{
   return str;
 }
 
-class PNGReader {
+export class PNGReader {
 
   bytes: Uint8Array;
   i: number;
   header: Uint8Array;
   dataChunks: Uint8Array[];
   png: PNG;
+  deflate: (data:Uint8Array)=>Uint8Array
 
   constructor(data: ArrayBuffer){
     // bytes buffer
@@ -178,7 +179,7 @@ class PNGReader {
     // Checksum:                      4 bytes
     var rawdata = data.subarray(2, data.length - 4);
     try{
-      var _data = JSZip.compressions.DEFLATE.uncompress(rawdata);
+      var _data = this.deflate(rawdata)
     }catch(err){
       throw new Error(err || "pako: zlib inflate error");
     }
@@ -397,5 +398,3 @@ class PNGReader {
     return this.png;
   }
 }
-
-export default PNGReader;

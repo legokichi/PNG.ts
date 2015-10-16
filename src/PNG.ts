@@ -5,7 +5,7 @@
 //   chenge zlib library stream.js to jszip(pako)
 //   support bitdepth 1
 
-import PNGReader from "./PNGReader";
+import {PNGReader} from "./PNGReader";
 
 function uInt8ToBitArray(uint8: number): number[] {// 170 -> [1,0,1,0,1,0,1,0]
   return (uint8+256).toString(2).split("").slice(1).map(Number);
@@ -34,7 +34,7 @@ function readBits(buffer: Uint8Array, bitOffset: number, bitLength:number ): num
 }
 
 
-class PNG {
+export class PNG {
   width: number;
   height: number;
   bitDepth: number;
@@ -256,9 +256,3 @@ class PNG {
     return arr;
   }
 }
-
-
-export {
-  PNG,
-  PNGReader
-};
