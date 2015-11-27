@@ -14,7 +14,7 @@ JavaScript PNG decoder written in TypeScript
 <script src="../dist/PNG.js"></script>
 <script>
 getBuffer("./Lenna.png").then(function(buffer){
-  var reader = new PNG.PNGReader(buffer, {deflate:deflate});
+  var reader = new PNG.PNGReader(buffer);
   reader.deflate = JSZip.compressions.DEFLATE.uncompress;
   var png = reader.parse();
   var decoded = png.getUint8ClampedArray();
