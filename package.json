@@ -13,7 +13,8 @@
     "clean": "rm -f lib/* dist/* test/*.js",
     "start": "http-server -p 8000 & watchify lib/index.js --standalone PNG -o dist/PNG.js -v & gulp watch;",
     "stop": "killall -- node */http-server -p 8000",
-    "build": "npm run clean; gulp build; browserify lib/index.js --outfile dist/PNG.js --standalone PNG"
+    "build": "npm run clean; gulp build; browserify lib/index.js --outfile dist/PNG.js --standalone PNG",
+    "dts": "tsc --declaration --target es6 --outDir lib src/*.ts"
   },
   "repository": {
     "type": "git",
@@ -35,6 +36,7 @@
     "url": "https://github.com/legokichi/PNG.ts/issues"
   },
   "main": "./lib/index.js",
+  "typings": "./lib/index.d.ts",
   "author": "legokichi",
   "contributors": []
 }
