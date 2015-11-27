@@ -7,9 +7,8 @@
 
 
 /// <reference path="./PNG"/>
-/// <reference path="../typings/tsd.d.ts"/>
 
-import {PNG} from "./PNG";
+import PNG from "./PNG";
 
 function equalBytes(a: Uint8Array, b: Uint8Array): boolean{
   if (a.length != b.length) return false;
@@ -40,7 +39,7 @@ function bufferToString(buffer: Uint8Array): string{
   return str;
 }
 
-export class PNGReader {
+export default class PNGReader {
 
   bytes: Uint8Array;
   i: number;
@@ -207,7 +206,7 @@ export class PNGReader {
         var _scanline = scanline.subarray(1, scanline.length);
         switch (filtertype){
           case 0: pixels.set(_scanline, offset); break;
-          default: throw new Error("unsupport filtered scanline: " + filtertype+ ":"+offset+":"+i); break;
+          default: throw new Error("unsupport filtered scanline: " + filtertype+ ":"+offset+":"+i);
         }
         offset += scanlineLength - 1;
       }
@@ -227,7 +226,7 @@ export class PNGReader {
           case 2: this.unFilterUp(     scanline, pixels, bpp, offset, cpr); break;
           case 3: this.unFilterAverage(scanline, pixels, bpp, offset, cpr); break;
           case 4: this.unFilterPaeth(  scanline, pixels, bpp, offset, cpr); break;
-          default: throw new Error("unkown filtered scanline: " + filtertype+ ":"+bpp+":"+offset+":"+cpr+":"+i); break;
+          default: throw new Error("unkown filtered scanline: " + filtertype+ ":"+bpp+":"+offset+":"+cpr+":"+i);
         }
         offset += cpr;
       }

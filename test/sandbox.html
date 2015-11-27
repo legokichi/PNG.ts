@@ -3,6 +3,7 @@
 <script>
 getBuffer("./Lenna.png").then(function(buffer){
   var reader = new PNG.PNGReader(buffer);
+  reader.deflate = JSZip.compressions.DEFLATE.uncompress;
   var png = reader.parse();
   var decoded = png.getUint8ClampedArray();
 
@@ -11,7 +12,7 @@ getBuffer("./Lenna.png").then(function(buffer){
   var width = cnv.width = png.width;
   var height = cnv.height = png.height;
   var imageData = ctx.getImageData(0, 0, width, height);
-  
+
   imageData.data.set(decoded);
   ctx.putImageData(imageData, 0, 0);
   document.body.appendChild(cnv);

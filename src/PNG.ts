@@ -5,7 +5,7 @@
 //   chenge zlib library stream.js to jszip(pako)
 //   support bitdepth 1
 
-import {PNGReader} from "./PNGReader";
+import PNGReader from "./PNGReader";
 
 function uInt8ToBitArray(uint8: number): number[] {// 170 -> [1,0,1,0,1,0,1,0]
   return (uint8+256).toString(2).split("").slice(1).map(Number);
@@ -34,7 +34,7 @@ function readBits(buffer: Uint8Array, bitOffset: number, bitLength:number ): num
 }
 
 
-export class PNG {
+export default class PNG {
   width: number;
   height: number;
   bitDepth: number;
@@ -220,7 +220,7 @@ export class PNG {
           bitsToNum(readBits(pixels, idbit+2, this.bitDepth)),
           bitsToNum(readBits(pixels, idbit+3, this.bitDepth))
         ];
-        default: throw new Error("invalid color type: " + this.colorType); break;
+        default: throw new Error("invalid color type: " + this.colorType);
       }
     }else{
       var i = this.colors * this.bitDepth / 8 * (y * this.width + x);
@@ -234,7 +234,7 @@ export class PNG {
           255];
         case 4: return [pixels[i], pixels[i], pixels[i], pixels[i + 1]];
         case 6: return [pixels[i], pixels[i + 1], pixels[i + 2], pixels[i + 3]];
-        default: throw new Error("invalid color type: " + this.colorType); break;
+        default: throw new Error("invalid color type: " + this.colorType);
       }
     }
   }

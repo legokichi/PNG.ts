@@ -9,7 +9,7 @@
   ],
   "scripts": {
     "init": "npm run update; npm run build",
-    "update": "npm update; bower update; dtsm update --save",
+    "update": "npm update; bower update",
     "clean": "rm -f lib/* dist/* test/*.js",
     "start": "http-server -p 8000 & watchify lib/index.js --standalone PNG -o dist/PNG.js -v & gulp watch;",
     "stop": "killall -- node */http-server -p 8000",
